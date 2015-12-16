@@ -13,4 +13,4 @@ ftgl-2.1.3:http://sourceforge.net/projects/ftgl/files/FTGL%20Source/2.1.3~rc5/
 
 Author:ZhiGang Zhou
 
-And use Microsoft Visual Studio 2013 to compile FreeType2 and FTGL: http://www.ithao123.cn/content-2606071.html
+How to compile FreeType2 and FTGL with Microsoft Visual Studio 2013: http://www.ithao123.cn/content-2606071.html
