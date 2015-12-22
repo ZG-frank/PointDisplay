@@ -15,4 +15,4 @@ How to compile FreeType2 and FTGL with Microsoft Visual Studio 2013: http://www.
 
 Author:ZhiGang Zhou
 
-if you have problems, contact with me: zzg19930305@163.com
+If you have problems, contact me: zzg19930305@163.com
