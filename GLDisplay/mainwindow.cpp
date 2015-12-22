@@ -94,12 +94,12 @@ void MainWindow::OpenPntFils()
 			QMessageBox::warning(this, QString::fromLocal8Bit("打开文件"), QString::fromLocal8Bit("不能打开文件\n%1").arg(PntFilepath));
 			return;
 		}
-		double d_TolX = 0;											// X求和
-		double d_TolY = 0;											// Y求和
-		double d_TolZ = 0;											// Z求和
-		double d_MeanX = 0;											// MeanX
-		double d_MeanY = 0;											// MeanY
-		double d_MeanZ = 0;											// MeanZ
+		double dTolX = 0;											// SumX
+		double dTolY = 0;											// SumY
+		double dTolZ = 0;											// SumZ
+		double dMeanX = 0;											// MeanX
+		double dMeanY = 0;											// MeanY
+		double dMeanZ = 0;											// MeanZ
 		QVector<Point3D> OriginPntsVec;								// 存储原始点
 		// 读取数据
 		QTextStream in(&file);
@@ -112,23 +112,23 @@ void MainWindow::OpenPntFils()
 			
 			for (int i = 0; i < list.size(); i++)
 			{
-				QString strTemp = list.at(i);						// list里是字符
+				QString strTemp = list[i];						// list里是字符
 				double nval = strTemp.toDouble(&bOK);				// 转换成double
 
 				if (bOK && i == 0)
 				{
 					PntsTemp.dX = nval;
-					d_TolX = d_TolX + PntsTemp.dX;					// 计算TOTAL的X
+					dTolX = dTolX + PntsTemp.dX;					// 计算TOTAL的X
 				}
 				else if (bOK && i == 1)
 				{
 					PntsTemp.dZ = nval; 
-					d_TolZ = d_TolZ + PntsTemp.dZ;
+					dTolZ = dTolZ + PntsTemp.dZ;
 				}
 				else if (bOK && i == 2)
 				{
 					PntsTemp.dY = nval;
-					d_TolY = d_TolY + PntsTemp.dY;
+					dTolY = dTolY + PntsTemp.dY;
 				}
 				
 				else if (!bOK || i<0 )
@@ -138,24 +138,21 @@ void MainWindow::OpenPntFils()
 					return;
 				}
 			}		
-			OriginPntsVec.push_back(PntsTemp);						// 放入Vec中
+			OriginPntsVec.push_back(PntsTemp);					// put in Vec
 		}
-		d_MeanX = d_TolX / OriginPntsVec.size();					// 计算Mean
-		d_MeanY = d_TolY / OriginPntsVec.size();
-		d_MeanZ = d_TolZ / OriginPntsVec.size();
+		dMeanX = dTolX / OriginPntsVec.size();					// 计算MeanX
+		dMeanY = dTolY / OriginPntsVec.size();					// 计算MeanY
+		dMeanZ = dTolZ / OriginPntsVec.size();					// 计算MeanZ
 
-		QVector<Point3D> PntsVec;									// 存减去重心后的点
-		Point3D TempPnts;											// 临时点对象
 		// 每个点减重心(使旋转中心与坐标中心重合)
 		for (int i = 0; i < OriginPntsVec.size(); i++)
 		{
-			TempPnts.dX = OriginPntsVec.at(i).dX - d_MeanX;
-			TempPnts.dY = OriginPntsVec.at(i).dY - d_MeanY;
-			TempPnts.dZ = OriginPntsVec.at(i).dZ - d_MeanZ;
-			PntsVec.push_back(TempPnts);
+			OriginPntsVec[i].dX = OriginPntsVec[i].dX - dMeanX;
+			OriginPntsVec[i].dY = OriginPntsVec[i].dY - dMeanY;
+			OriginPntsVec[i].dZ = OriginPntsVec[i].dZ - dMeanZ;
 		}
 		// 将数据传入到GLWidget
-		m_GLWidget->loadData(PntsVec);
+		m_GLWidget->loadData(OriginPntsVec);
 		file.close();
 		// 得到外框数据
 		double dBoxLength = 0;
@@ -165,7 +162,7 @@ void MainWindow::OpenPntFils()
 		m_GLWidget->getBoxNum(dBoxLength, dBoxWidth, dBoxHeight);
 		m_GLWidget->getCurrentPnt(nCurrentPnt);
 		// 改变状态栏
-		numOfPoint->setText(QString::fromLocal8Bit("总点数为:") + QString::number(PntsVec.size())			+ "                    ");
+		numOfPoint->setText(QString::fromLocal8Bit("总点数为:") + QString::number(OriginPntsVec.size())		+ "                    ");
 		numOfDisplayPoint->setText(QString::fromLocal8Bit("当前显示点数为:") + QString::number(nCurrentPnt)	+ "                    ");
 		BoxLength->setText(QString::fromLocal8Bit("外框长度为:") + QString::number(dBoxLength)				+ "                    ");
 		BoxWidth->setText(QString::fromLocal8Bit("外框宽度为:") + QString::number(dBoxWidth)					+ "                    ");
