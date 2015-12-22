@@ -96,5 +96,14 @@
     <ClInclude Include="ArcBall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ANN.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ANNperf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ANNx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
