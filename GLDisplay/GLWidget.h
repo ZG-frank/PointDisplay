@@ -16,6 +16,9 @@
 #include <ftglyph.h>
 #include <FTGL/ftgl.h>
 #include <FTGL/FTGLExtrdFont.h>
+#include <ANN.h>
+#include <ANNperf.h>
+#include <ANNx.h>
 
 struct Point3D
 {
@@ -63,7 +66,7 @@ protected:
 	void mouseReleaseEvent(QMouseEvent *event);
 	void wheelEvent(QWheelEvent *event);
 	void getMaxMinXYZ(double &maxX, double &minX, double &maxY, double &minY, double &maxZ, double &minZ);
-
+	void FindNeighPnts(QVector<Point3D> PntsList);
 public slots:
 	void setEnlargeNum();
 	void setNarrowNum();
@@ -79,6 +82,7 @@ private:
 	Point2fT			m_mousePt;				// 鼠标当前位置
 	bool				m_leftButtonClicked;	// 是否点击左键				
 	QVector<Point3D>	m_ListPnts;				// 记录点
+	QVector<Point3D>	LBPntsVec;				// 存储滤波后的点
 	double				m_MoveIntoScreen = 0;	// 移入屏幕距离
 	double				m_dZoomFactor;			// 缩放系数，初始化为1。
 	double				m_MaxPntX = 0;			// MaxX
@@ -99,6 +103,7 @@ private:
 	double				m_PntG = 255;			// 颜色G
 	double				m_PntB = 255;			// 颜色B
 	int					m_CurrentDisplayPnts;	// 当前显示的点数
+
 };
 
 #endif // GLWIDGET_H

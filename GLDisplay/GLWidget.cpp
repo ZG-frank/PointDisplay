@@ -1,6 +1,12 @@
 #include "GLWidget.h"
 #include <math.h>
 
+#ifndef _DEBUG 
+#pragma comment(lib,"G:/code/GLDisplay/lib/ANN64.lib") 
+#else 
+#pragma comment(lib,"G:/code/GLDisplay/lib/ANN64d.lib") 
+#endif
+
 // 变换矩阵
 Matrix4fT   Transform = { 1.0f, 0.0f, 0.0f, 0.0f,			// NEW: Final Transform
 						  0.0f, 1.0f, 0.0f, 0.0f,
@@ -41,24 +47,24 @@ void GLWidget::getMaxMinXYZ(double &maxX, double &minX, double &maxY, double &mi
 {
 	if (m_ListPnts.size() != 0)
 	{
-		maxX = minX = m_ListPnts.at(0).dX;
-		maxY = minY = m_ListPnts.at(0).dY;
-		maxZ = minZ = m_ListPnts.at(0).dZ;
+		maxX = minX = m_ListPnts[0].dX;
+		maxY = minY = m_ListPnts[0].dY;
+		maxZ = minZ = m_ListPnts[0].dZ;
 
 		for (int i = 0; i < m_ListPnts.size(); i++)
 		{
-			if (m_ListPnts.at(i).dX > maxX)
-				maxX = m_ListPnts.at(i).dX;
-			if (m_ListPnts.at(i).dX < minX)
-				minX = m_ListPnts.at(i).dX;
-			if (m_ListPnts.at(i).dY > maxY)
-				maxY = m_ListPnts.at(i).dY;
-			if (m_ListPnts.at(i).dY < minY)
-				minY = m_ListPnts.at(i).dY;
-			if (m_ListPnts.at(i).dZ > maxZ)
-				maxZ = m_ListPnts.at(i).dZ;
-			if (m_ListPnts.at(i).dZ < minZ)
-				minZ = m_ListPnts.at(i).dZ;
+			if (m_ListPnts[i].dX > maxX)
+				maxX = m_ListPnts[i].dX;
+			if (m_ListPnts[i].dX < minX)
+				minX = m_ListPnts[i].dX;
+			if (m_ListPnts[i].dY > maxY)
+				maxY = m_ListPnts[i].dY;
+			if (m_ListPnts[i].dY < minY)
+				minY = m_ListPnts[i].dY;
+			if (m_ListPnts[i].dZ > maxZ)
+				maxZ = m_ListPnts[i].dZ;
+			if (m_ListPnts[i].dZ < minZ)
+				minZ = m_ListPnts[i].dZ;
 		}
 	}
 }
@@ -146,17 +152,17 @@ void GLWidget::paintGL()
 	glPushMatrix();													// NEW: Prepare Dynamic Transform
 	glMultMatrixf(Transform.M);										// NEW: Apply Dynamic Transform
 	// 开始绘制点
-	if (m_ListPnts.size() != 0)
+	if (LBPntsVec.size() != 0)
 	{
 		glShadeModel(GL_SMOOTH_POINT_SIZE_RANGE);
 		glPointSize(3.0f);
 		glBegin(GL_POINTS);
-		for (int i = 0; i < m_ListPnts.size(); i++)
+		for (int i = 0; i < LBPntsVec.size(); i++)
 		{
 			// 实际设色是OpenGL的Y轴
-			double fRate = (m_ListPnts.at(i).dY - m_MinPntY) / (m_MaxPntY - m_MinPntY);
+			double fRate = (LBPntsVec[i].dY - m_MinPntY) / (m_MaxPntY - m_MinPntY);
 			// 实际去噪的还是垂直屏幕的方向，即OpenGL的Z轴
-			double fZRate = (m_ListPnts.at(i).dZ - m_MinPntZ) / (m_MaxPntZ - m_MinPntZ);
+			double fZRate = (LBPntsVec[i].dZ - m_MinPntZ) / (m_MaxPntZ - m_MinPntZ);
 #if 0
 			// 线性方程设色
 			if (fRate <= 0.5)
@@ -225,12 +231,12 @@ void GLWidget::paintGL()
 #endif
 			// 
 
-			// 去噪后显示
+			 //去噪后显示
 			if (fZRate >= 0.05 && fZRate <= 0.95)
 			{
 				glColor3f(m_PntR, m_PntG, m_PntB);
-				glVertex3d(m_ListPnts.at(i).dX, m_ListPnts.at(i).dY, m_ListPnts.at(i).dZ);
-				// 显示点加1
+				glVertex3d(LBPntsVec[i].dX, LBPntsVec[i].dY, LBPntsVec[i].dZ);
+				 //显示点加1
 				++m_CurrentDisplayPnts;
 			}
 		}
@@ -255,12 +261,12 @@ void GLWidget::paintGL()
 			glScalef(m_dScale, m_dScale, m_dScale);
 			m_freeTypeFont->Render(renderText.toLatin1().data(), -1, 
 				FTPoint(0, m_MaxPntY / m_dScale, m_MaxPntZ / m_dScale));
-			//绘制外框宽度
-			QString renderText1 = QString::number(m_BoxWidth);
+			//绘制外框高度
+			QString renderText1 = QString::number(m_BoxHeight);
 			m_freeTypeFont->Render(renderText1.toLatin1().data(), -1, 
 				FTPoint(m_MinPntX / m_dScale, m_MaxPntY / m_dScale, 0));
-			//绘制外框高度
-			QString renderText2 = QString::number(m_BoxHeight);
+			//绘制外框宽度
+			QString renderText2 = QString::number(m_BoxWidth);
 			m_freeTypeFont->Render(renderText2.toLatin1().data(), -1, 
 				FTPoint(m_MinPntX / m_dScale, 0, m_MaxPntZ / m_dScale));
 		}
@@ -451,6 +457,7 @@ void GLWidget::keyPressEvent(QKeyEvent *event)
 void GLWidget::loadData(QVector<Point3D> PntsList)
 {
 	m_ListPnts = PntsList;
+	LBPntsVec = PntsList;
 	// 每读取一次数据就要将当前显示的点重置为0
 	m_CurrentDisplayPnts = 0;
 	if (m_ListPnts.size() != 0)
@@ -458,9 +465,80 @@ void GLWidget::loadData(QVector<Point3D> PntsList)
 		getMaxMinXYZ(m_MaxPntX, m_MinPntX, m_MaxPntY, m_MinPntY, m_MaxPntZ, m_MinPntZ);	// 得到XYZ最值
 	}
 
- 	m_BoxLength = fabs(m_MaxPntX - m_MinPntX);											// 计算外框长度
-	m_BoxWidth  = fabs(m_MaxPntY - m_MinPntY);											// 计算外框宽度
+	m_BoxLength = fabs(m_MaxPntX - m_MinPntX);											// 计算外框长度
+	m_BoxWidth = fabs(m_MaxPntY - m_MinPntY);											// 计算外框宽度
 	m_BoxHeight = fabs(m_MaxPntZ - m_MinPntZ);											// 计算外框高度
+
+	// 构建KdTree
+	ANNpointArray pDataPnts = NULL;
+	ANNkd_tree*	pKdTree = NULL;
+
+	int nDim = 3;// 3维点
+	//int nDim = 2;
+	int nPntsCount = m_ListPnts.size();
+
+	try
+	{
+		pDataPnts = annAllocPts(nPntsCount, nDim);				// 初始化data	
+
+		for (int i = 0; i < nPntsCount; ++i)
+		{
+			pDataPnts[i][0] = m_ListPnts[i].dX;
+			pDataPnts[i][1] = m_ListPnts[i].dY;
+			pDataPnts[i][2] = m_ListPnts[i].dZ;
+		}
+
+		pKdTree = new ANNkd_tree(pDataPnts, nPntsCount, nDim);	// 构建查找树
+	}
+	catch (...)
+	{
+		printf("Failed to create the kd_tree!");
+	}
+
+	const long nK = 10;		// 最近points个数
+	ANNidx nnIdx[nK];		// 最近points索引
+	ANNdist dists[nK];		// 最近points距离(没有开方的)
+	double eps = 1e-5;
+	double dStep = 0;
+
+	try
+	{
+		for (int i = 0; i < m_ListPnts.size(); ++i)
+		{
+			// 二维点
+			//ANNcoord queryPt[2] = { m_ListPnts[i].dX, m_ListPnts[i].dY };
+			// 三维点
+			ANNcoord queryPt[3] = { m_ListPnts[i].dX, m_ListPnts[i].dY, m_ListPnts[i].dZ };
+			// annkSearch
+			pKdTree->annkPriSearch(queryPt, nK, nnIdx, dists, eps);
+
+			double dWeightSum = 0;					
+			double dSumZ = 0;						
+			double dNewZ = 0;
+
+			// 均值滤波器 Average Filter
+			for (long j = 1; j < nK; ++j)
+			{
+				double dWeight = 1.0 / dists[j];
+				dWeightSum = dWeightSum + dWeight;
+				dSumZ = dSumZ + (m_ListPnts[nnIdx[j]].dZ * dWeight);
+			}
+			dNewZ = dSumZ / dWeightSum;	
+			// New Z put in Vec
+			LBPntsVec[i].dZ = dNewZ;
+		}
+	}
+	catch (...)
+	{
+		printf("Failed to create the kd_tree!");
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	delete pKdTree;
+	
+	annDeallocPts(pDataPnts);
+	annClose();
+
+
 	// 计算最大的外框边
 	m_BoxMaxDis = _MAX3(m_BoxLength, m_BoxWidth,m_BoxHeight);
 	
