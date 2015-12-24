@@ -71,14 +71,19 @@ MainWindow::MainWindow(QWidget*parent) : QMainWindow(parent)
 	// 信号槽
 	QObject::connect(QOpen, SIGNAL(triggered()), this, SLOT(OpenPntFils()));
 	QObject::connect(QAbout, SIGNAL(triggered()), this, SLOT(Aboutsof()));
+
 	QObject::connect(QEnlarge, SIGNAL(triggered()), this, SLOT(ClickedEnlargeBtn()));
 	QObject::connect(this, SIGNAL(ClickedEnlarge()), m_GLWidget, SLOT(setEnlargeNum()));
+
 	QObject::connect(QNarrow, SIGNAL(triggered()), this, SLOT(ClickedNarrowBtn()));
 	QObject::connect(this, SIGNAL(ClickedNarrow()), m_GLWidget, SLOT(setNarrowNum()));
+
 	QObject::connect(QOrtho, SIGNAL(triggered()), this, SLOT(ClickedOrthoBtn()));
 	QObject::connect(this, SIGNAL(ClickedOrtho()), m_GLWidget, SLOT(setOrtho()));
+
 	QObject::connect(QReset, SIGNAL(triggered()), this, SLOT(ClickedResetBtn()));
 	QObject::connect(this, SIGNAL(ClickedReset()), m_GLWidget, SLOT(setResetNum()));
+
 	QObject::connect(QDrawshell, SIGNAL(triggered()), this, SLOT(ClickeddrawshellBtn()));
 	QObject::connect(this, SIGNAL(Clickeddrawshell()), m_GLWidget, SLOT(setDrawshellNum()));
 }
@@ -112,7 +117,7 @@ void MainWindow::OpenPntFils()
 			
 			for (int i = 0; i < list.size(); i++)
 			{
-				QString strTemp = list[i];						// list里是字符
+				QString strTemp = list[i];							// list里是字符
 				double nval = strTemp.toDouble(&bOK);				// 转换成double
 
 				if (bOK && i == 0)
@@ -165,8 +170,8 @@ void MainWindow::OpenPntFils()
 		numOfPoint->setText(QString::fromLocal8Bit("总点数为:") + QString::number(OriginPntsVec.size())		+ "                    ");
 		numOfDisplayPoint->setText(QString::fromLocal8Bit("当前显示点数为:") + QString::number(nCurrentPnt)	+ "                    ");
 		BoxLength->setText(QString::fromLocal8Bit("外框长度为:") + QString::number(dBoxLength)				+ "                    ");
-		BoxWidth->setText(QString::fromLocal8Bit("外框宽度为:") + QString::number(dBoxWidth)					+ "                    ");
-		BoxHeight->setText(QString::fromLocal8Bit("外框高度为:") + QString::number(dBoxHeight)				+ "                    ");
+		BoxWidth->setText(QString::fromLocal8Bit("外框宽度为:") + QString::number(dBoxHeight)				+ "                    ");
+		BoxHeight->setText(QString::fromLocal8Bit("外框高度为:") + QString::number(dBoxWidth)				+ "                    ");
 	}
 }
 
@@ -197,7 +202,7 @@ void MainWindow::ClickeddrawshellBtn()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-		event->accept();
+	event->accept();
 }
 
 void MainWindow::Aboutsof()
@@ -208,6 +213,7 @@ void MainWindow::Aboutsof()
 		"右键点击返回初始大小和初始视角\n"
 		"鼠标滚轮控制图形的放大缩小\n"
 		"操作快捷键：\n"
+		"Q：透射或正射投影\n"
 		"W：显示或关闭外框\n"
 		"↑：放大\n"
 		"↓：缩小\n"));

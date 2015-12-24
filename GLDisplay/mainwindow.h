@@ -25,21 +25,21 @@ public:
 	GLWidget *m_GLWidget;
 
 signals:
-	void ClickedEnlarge();
+	void ClickedEnlarge();						// 槽函数
 	void ClickedNarrow();
 	void ClickedReset();
 	void Clickeddrawshell();
 	void ClickedOrtho();
 
 protected slots:
-	void OpenPntFils();
-	void Aboutsof();
-	void closeEvent(QCloseEvent *);
-	void ClickedEnlargeBtn();
-	void ClickedNarrowBtn();
-	void ClickedOrthoBtn();
-	void ClickedResetBtn();
-	void ClickeddrawshellBtn();
+	void OpenPntFils();							// 点击打开按钮
+	void Aboutsof();							// 点击关于按钮
+	void closeEvent(QCloseEvent *);				// 关闭事件
+	void ClickedEnlargeBtn();					// 点击放大按钮
+	void ClickedNarrowBtn();					// 点击缩小按钮
+	void ClickedOrthoBtn();						// 点击正射投影按钮
+	void ClickedResetBtn();						// 点击重置视图按钮
+	void ClickeddrawshellBtn();					// 点击是否绘制外框按钮
 
 private:
 	QString PntFilepath;						// 点文件路径
