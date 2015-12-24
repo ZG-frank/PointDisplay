@@ -1,12 +1,84 @@
-﻿生成启动时间为 2015/12/24 10:56:06。
+﻿生成启动时间为 2015/12/24 14:23:51。
      1>项目“G:\code\GLDisplay\GLDisplay\GLDisplay.vcxproj”在节点 2 上(Build 个目标)。
+     1>CustomBuild:
+         Moc'ing GLWidget.h...
+         Moc'ing mainwindow.h...
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_GLDisplay.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_GLDisplay.cpp, GeneratedFiles\Release\moc_GLDisplay.cpp.
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_GLWidget.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_GLWidget.cpp, GeneratedFiles\Release\moc_GLWidget.cpp.
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_mainwindow.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_mainwindow.cpp, GeneratedFiles\Release\moc_mainwindow.cpp.
-     1>Link:
+       ClCompile:
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I..\include /I..\include1 /IF:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include /I.\GeneratedFiles /I. /IF:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include /I.\GeneratedFiles\Debug /IF:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore /IF:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui /IF:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL /IF:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets /Zi /nologo /W1 /WX- /Od /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_CORE_LIB /D QT_GUI_LIB /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt GLWidget.cpp GeneratedFiles\Debug\moc_GLWidget.cpp GeneratedFiles\Debug\moc_mainwindow.cpp main.cpp mainwindow.cpp
+         GLWidget.cpp
+         moc_GLWidget.cpp
+         moc_mainwindow.cpp
+         main.cpp
+         mainwindow.cpp
+         正在生成代码...
+       Link:
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"G:\code\GLDisplay\x64\Debug\\GLDisplay.exe" /NOLOGO /LIBPATH:..\lib\Debug /LIBPATH:F:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib /LIBPATH:F:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib ANN64d.lib freetype253_D.lib ftgl_static_D.lib qtmaind.lib Qt5Cored.lib Qt5Guid.lib Qt5OpenGLd.lib opengl32.lib glu32.lib Qt5Widgetsd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\code\GLDisplay\x64\Debug\GLDisplay.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\code\GLDisplay\x64\Debug\GLDisplay.lib" /MACHINE:X64 x64\Debug\ArcBall.obj
+         x64\Debug\moc_GLDisplay.obj
+         x64\Debug\moc_GLWidget.obj
+         x64\Debug\moc_mainwindow.obj
+         x64\Debug\qrc_GLDisplay.obj
+         x64\Debug\GLDisplay.obj
+         x64\Debug\GLWidget.obj
+         x64\Debug\main.obj
+         x64\Debug\mainwindow.obj
+         LINK : 没有找到 G:\code\GLDisplay\x64\Debug\\GLDisplay.exe 或上一个增量链接没有生成它；正在执行完全链接
+     1>GLWidget.obj : warning LNK4217: 本地定义的符号 ??0FTPoint@@QEAA@XZ (public: __cdecl FTPoint::FTPoint(void)) 在函数 "protected: virtual void __cdecl GLWidget::paintGL(void)" (?paintGL@GLWidget@@MEAAXXZ) 中导入
+     1>GLWidget.obj : warning LNK4217: 本地定义的符号 ??0FTPoint@@QEAA@NNN@Z (public: __cdecl FTPoint::FTPoint(double,double,double)) 在函数 "protected: virtual void __cdecl GLWidget::paintGL(void)" (?paintGL@GLWidget@@MEAAXXZ) 中导入
+     1>GLWidget.obj : warning LNK4217: 本地定义的符号 ??0FTExtrudeFont@@QEAA@PEBD@Z (public: __cdecl FTExtrudeFont::FTExtrudeFont(char const *)) 在函数 "protected: virtual void __cdecl GLWidget::initializeGL(void)" (?initializeGL@GLWidget@@MEAAXXZ) 中导入
+     1>GLWidget.obj : warning LNK4217: 本地定义的符号 ??1FTExtrudeFont@@UEAA@XZ (public: virtual __cdecl FTExtrudeFont::~FTExtrudeFont(void)) 在函数 "public: virtual void * __cdecl FTExtrudeFont::`scalar deleting destructor'(unsigned int)" (??_GFTExtrudeFont@@UEAAPEAXI@Z) 中导入
+     1>ANN64d.lib(ANN.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ANN64d.lib(ANN.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ANN64d.lib(bd_fix_rad_search.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ANN64d.lib(bd_fix_rad_search.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ANN64d.lib(bd_pr_search.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ANN64d.lib(bd_pr_search.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ANN64d.lib(bd_search.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ANN64d.lib(bd_search.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ANN64d.lib(bd_tree.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ANN64d.lib(bd_tree.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ANN64d.lib(kd_dump.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ANN64d.lib(kd_dump.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ANN64d.lib(kd_fix_rad_search.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ANN64d.lib(kd_fix_rad_search.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ANN64d.lib(kd_pr_search.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ANN64d.lib(kd_pr_search.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ANN64d.lib(kd_search.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ANN64d.lib(kd_search.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ANN64d.lib(kd_split.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ANN64d.lib(kd_split.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ANN64d.lib(kd_tree.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ANN64d.lib(kd_tree.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ANN64d.lib(kd_util.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ANN64d.lib(kd_util.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(autofit.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(autofit.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(bdf.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(bdf.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(cff.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(cff.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(ftbase.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(ftbase.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(ftbitmap.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(ftbitmap.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(ftdebug.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(ftdebug.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(ftgzip.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(ftgzip.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(ftinit.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(ftinit.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(ftlzw.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(ftlzw.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(ftsystem.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(ftsystem.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(smooth.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(smooth.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(pcf.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(pcf.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(pfr.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(pfr.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(psaux.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(psaux.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(pshinter.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(pshinter.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(psmodule.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(psmodule.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(raster.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(raster.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(sfnt.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(sfnt.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(truetype.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(truetype.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(type1.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(type1.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(type1cid.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(type1cid.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(type42.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(type42.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>freetype253_D.lib(winfnt.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“freetype253_D.lib(winfnt.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ftgl_static_D.lib(FTCharmap.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ftgl_static_D.lib(FTCharmap.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ftgl_static_D.lib(FTContour.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ftgl_static_D.lib(FTContour.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ftgl_static_D.lib(FTFace.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ftgl_static_D.lib(FTFace.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ftgl_static_D.lib(FTGlyphContainer.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ftgl_static_D.lib(FTGlyphContainer.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ftgl_static_D.lib(FTLibrary.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ftgl_static_D.lib(FTLibrary.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ftgl_static_D.lib(FTPoint.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ftgl_static_D.lib(FTPoint.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ftgl_static_D.lib(FTSize.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ftgl_static_D.lib(FTSize.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ftgl_static_D.lib(FTVectoriser.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ftgl_static_D.lib(FTVectoriser.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ftgl_static_D.lib(FTExtrudeFont.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ftgl_static_D.lib(FTExtrudeFont.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ftgl_static_D.lib(FTFont.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ftgl_static_D.lib(FTFont.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ftgl_static_D.lib(FTExtrudeGlyph.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ftgl_static_D.lib(FTExtrudeGlyph.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+     1>ftgl_static_D.lib(FTGlyph.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“ftgl_static_D.lib(FTGlyph.obj)”或在“G:\code\GLDisplay\x64\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
          GLDisplay.vcxproj -> G:\code\GLDisplay\x64\Debug\GLDisplay.exe
      1>已完成生成项目“G:\code\GLDisplay\GLDisplay\GLDisplay.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:00.05
+已用时间 00:00:06.08

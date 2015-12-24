@@ -1,12 +1,37 @@
-﻿生成启动时间为 2015/12/24 10:56:12。
+﻿生成启动时间为 2015/12/24 14:23:37。
      1>项目“G:\code\GLDisplay\GLDisplay\GLDisplay.vcxproj”在节点 2 上(Build 个目标)。
+     1>CustomBuild:
+         Moc'ing GLWidget.h...
+         Moc'ing mainwindow.h...
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_GLDisplay.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_GLDisplay.cpp, GeneratedFiles\Release\moc_GLDisplay.cpp.
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_GLWidget.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_GLWidget.cpp, GeneratedFiles\Release\moc_GLWidget.cpp.
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(935,5): warning MSB8027: Two or more files with the name of moc_mainwindow.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are GeneratedFiles\Debug\moc_mainwindow.cpp, GeneratedFiles\Release\moc_mainwindow.cpp.
-     1>Link:
+       ClCompile:
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I..\include /I..\include1 /I.\GeneratedFiles /I. /IF:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include /I.\GeneratedFiles\Release /IF:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtCore /IF:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtGui /IF:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtOpenGL /IF:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\include\QtWidgets /nologo /W1 /WX- /O2 /D UNICODE /D WIN32 /D WIN64 /D QT_DLL /D QT_NO_DEBUG /D NDEBUG /D QT_CORE_LIB /D QT_GUI_LIB /D QT_OPENGL_LIB /D QT_WIDGETS_LIB /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt GLWidget.cpp GeneratedFiles\Release\moc_GLWidget.cpp GeneratedFiles\Release\moc_mainwindow.cpp main.cpp mainwindow.cpp
+         GLWidget.cpp
+         moc_GLWidget.cpp
+         moc_mainwindow.cpp
+         main.cpp
+         mainwindow.cpp
+         正在生成代码...
+       Link:
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"G:\code\GLDisplay\x64\Release\\GLDisplay.exe" /NOLOGO /LIBPATH:..\lib\Release /LIBPATH:F:\Qt\Qt5.4.0\5.4\msvc2013_64_opengl\lib ANN64.lib freetype253.lib ftgl_static.lib qtmain.lib Qt5Core.lib Qt5Gui.lib Qt5OpenGL.lib opengl32.lib glu32.lib Qt5Widgets.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"G:\code\GLDisplay\x64\Release\GLDisplay.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\code\GLDisplay\x64\Release\GLDisplay.lib" /MACHINE:X64 x64\Release\ArcBall.obj
+         x64\Release\qrc_GLDisplay.obj
+         x64\Release\moc_GLDisplay.obj
+         x64\Release\moc_GLWidget.obj
+         x64\Release\moc_mainwindow.obj
+         x64\Release\GLDisplay.obj
+         x64\Release\GLWidget.obj
+         x64\Release\main.obj
+         x64\Release\mainwindow.obj
+         ANN64.lib(ANN.obj) : 找到 MSIL .netmodule 或使用 /GL 编译的模块；正在使用 /LTCG 重新启动链接；将 /LTCG 添加到链接命令行以改进链接器性能
+         正在生成代码
+         已完成代码的生成
+     1>GLWidget.obj : warning LNK4049: 已导入本地定义的符号 ??0FTExtrudeFont@@QEAA@PEBD@Z (public: __cdecl FTExtrudeFont::FTExtrudeFont(char const *))
+     1>GLWidget.obj : warning LNK4049: 已导入本地定义的符号 ??1FTExtrudeFont@@UEAA@XZ (public: virtual __cdecl FTExtrudeFont::~FTExtrudeFont(void))
          GLDisplay.vcxproj -> G:\code\GLDisplay\x64\Release\GLDisplay.exe
      1>已完成生成项目“G:\code\GLDisplay\GLDisplay\GLDisplay.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:00.05
+已用时间 00:00:07.84
