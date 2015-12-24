@@ -1,12 +1,6 @@
 #include "GLWidget.h"
 #include <math.h>
 
-#ifndef _DEBUG 
-#pragma comment(lib,"G:/code/GLDisplay/lib/ANN64.lib") 
-#else 
-#pragma comment(lib,"G:/code/GLDisplay/lib/ANN64d.lib") 
-#endif
-
 // 变换矩阵
 Matrix4fT   Transform = { 1.0f, 0.0f, 0.0f, 0.0f,			// NEW: Final Transform
 						  0.0f, 1.0f, 0.0f, 0.0f,
@@ -113,7 +107,7 @@ void GLWidget::initializeGL()
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);				// 告诉系统对透视进行修正
 	glLightModelf(GL_LIGHT_MODEL_AMBIENT,1);
 	// 读入FreeType字体，路径确保正确
-	QString fontPath = QApplication::applicationDirPath() + "/Test.ttf"; // Or "H:/code/GLDisplay/Test.ttf" 即绝对路径
+	QString fontPath = QApplication::applicationDirPath() + "/Test.ttf"; // Or "../x64/Debug/Test.ttf" Or "../x64/Release/Test.ttf"
 	m_freeTypeFont = new FTGLExtrdFont(fontPath.toLatin1().data());
 	m_freeTypeFont->FaceSize(1);
 	m_freeTypeFont->Depth(0.05);
@@ -124,7 +118,7 @@ void GLWidget::paintGL()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 	glLoadIdentity();
-	
+	// 设置投影方式
 	if (!m_isPerspective)
 	{
 		// 旋转中心，投影中心
@@ -138,20 +132,21 @@ void GLWidget::paintGL()
 
 		double dHalfW = (double)m_Width / 2;
 		double dHalfH = (double)m_Height / 2;
-		// 设置视点(通过视点控制远近)
+		// 设置视点(正射投影通过视点控制远近)
 		glViewport(dHalfW - dHalfW * m_dZoomFactor, dHalfH - dHalfH * m_dZoomFactor,
 				   2 * dHalfW * m_dZoomFactor, 2 * dHalfH * m_dZoomFactor);
 	}
 	else
 	{
 		gluPerspective(45.0f, (GLfloat)m_Width / (GLfloat)m_Height, 0.00001f, 10000.0f);
-		// 设置视点
-		glViewport(0, 0, m_Width, m_Height);
+		// 设置视点(透射投影通过glTranslatef控制远近)
+		glViewport(0, 0, m_Width, m_Height);						// 0，0为左下角
 	}
 	glTranslatef(0, 0, m_MoveIntoScreen);							// Move Into The Screen
+
+	// 开始绘制点
 	glPushMatrix();													// NEW: Prepare Dynamic Transform
 	glMultMatrixf(Transform.M);										// NEW: Apply Dynamic Transform
-	// 开始绘制点
 	if (LBPntsVec.size() != 0)
 	{
 		glShadeModel(GL_SMOOTH_POINT_SIZE_RANGE);
@@ -182,7 +177,6 @@ void GLWidget::paintGL()
 			m_PntR = 10 * fRate * fRate;
 			m_PntG = -40 * fRate * fRate + 40 * fRate;
 			m_PntB = 10 * (fRate - 1) * (fRate - 1);
-			
 #if 0
 			//Google Map设色方案
 			if (fRate < 0)
@@ -229,49 +223,49 @@ void GLWidget::paintGL()
 			double m_PntG = Pntcolor.Gy * 127;
 			double m_PntB = Pntcolor.Bz * 127;
 #endif
-			// 
-
-			 //去噪后显示
+			 // 去噪
 			if (fZRate >= 0.05 && fZRate <= 0.95)
 			{
+				// 绘制
 				glColor3f(m_PntR, m_PntG, m_PntB);
 				glVertex3d(LBPntsVec[i].dX, LBPntsVec[i].dY, LBPntsVec[i].dZ);
-				 //显示点加1
+				 // 显示点加1
 				++m_CurrentDisplayPnts;
 			}
 		}
 
 		glEnd();
 	}
-	glPopMatrix();															// NEW: Unapply Dynamic Transform
+	glPopMatrix();													 // NEW: Unapply Dynamic Transform
 	glFlush();
 
 	// 绘制外围框					
-	glPushMatrix();															// NEW: Prepare Dynamic Transform
-	glMultMatrixf(Transform.M);												// NEW: Apply Dynamic Transform
-	if (m_ListPnts.size() != 0)
+	glPushMatrix();															
+	glMultMatrixf(Transform.M);												
+	if (LBPntsVec.size() != 0)
 	{
 		// 字体比例
 		m_dScale = m_BoxMaxDis / 35;
 		if (m_isdrawshell)
 		{
+			// 绘制外框
 			drawshell();
-			//绘制外框长度
+			// 绘制外框长度
 			QString renderText = QString::number(m_BoxLength);
 			glScalef(m_dScale, m_dScale, m_dScale);
 			m_freeTypeFont->Render(renderText.toLatin1().data(), -1, 
 				FTPoint(0, m_MaxPntY / m_dScale, m_MaxPntZ / m_dScale));
-			//绘制外框高度
+			// 绘制外框高度
 			QString renderText1 = QString::number(m_BoxHeight);
 			m_freeTypeFont->Render(renderText1.toLatin1().data(), -1, 
 				FTPoint(m_MinPntX / m_dScale, m_MaxPntY / m_dScale, 0));
-			//绘制外框宽度
+			// 绘制外框宽度
 			QString renderText2 = QString::number(m_BoxWidth);
 			m_freeTypeFont->Render(renderText2.toLatin1().data(), -1, 
 				FTPoint(m_MinPntX / m_dScale, 0, m_MaxPntZ / m_dScale));
 		}
 	}
-	glPopMatrix();															// NEW: Unapply Dynamic Transform
+	glPopMatrix();														
 	glFlush();
 }
 
