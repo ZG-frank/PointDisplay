@@ -218,9 +218,6 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ANN.h" />
-    <ClInclude Include="ANNperf.h" />
-    <ClInclude Include="ANNx.h" />
     <ClInclude Include="ArcBall.h" />
     <ClInclude Include="GeneratedFiles\ui_GLDisplay.h" />
     <CustomBuild Include="GLWidget.h">
